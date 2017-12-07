@@ -9,7 +9,9 @@ const Country = require('./country');
 Aircraft.belongsTo(Country, { as: 'country' });
 // Country.belongsTo(Aircraft, { as: 'aircraft' });
 
-Country.hasMany(Aircraft);
+Country.hasMany(Aircraft, {
+  onDelete: 'cascade',
+});
 
 module.exports = {
   Aircraft,
