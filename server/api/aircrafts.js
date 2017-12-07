@@ -3,6 +3,19 @@ const router = require('express').Router();
 const { Aircraft } = require('../db/models');
 const { Country } = require('../db/models');
 
+router.param('id', function(req, res, next, id) {
+  Aircraft.findById(id)
+    .then(function(aircraft) {
+      if (aircraft) {
+        req.aircraft = aircraft;
+        next();
+      } else {
+        return res.sendStatus(404);
+      }
+    })
+    .catch(next);
+});
+
 // prettier-ignore
 router
 .route('/')
@@ -48,7 +61,7 @@ router
 // prettier-ignore
 router
   .route('/:id')
-  .get((req, res, next) => {/* populated with only the name of the country that owns the aircraft*/
+  .get((req, res, next) => {
     return Aircraft.findAll({
       include: [
         {
@@ -72,16 +85,8 @@ router
       })
       .catch(next);
   })
-  .delete((req, res,next) => {
-     Aircraft.destroy({
-      where:{
-        id: req.aircraft.id
-      }
-    })
-    .then(() => {
-        res.status(204).send('Content deleted.');
-      })
-    .then(next);
+  .delete((req, res, next) => {
+      req.aircraft.destroy().then(() => res.status(204).end());
   });
 
 module.exports = router;

@@ -5,28 +5,41 @@ const { Aircraft } = require('../db/models');
 const { Country } = require('../db/models');
 
 // prettier-ignore
-router
-.route('/')
-  .get((req, res, next) => {
-    return Country.findAll({include: [Aircraft]})
-     .then(countries => {
-       return countries.filter((country) => {
-        return country.aircrafts.length > 0
-       })
-     })
-     .then(countries => res.json(countries))
-     .catch(next)
-    })
-    .post((req, res, next) => {
-      if (req.body) {
-        Country.create(req.body)
-          .then(country => {
-            country.save();
-            res.json(country);
-          })
-          .catch(next);
+router.param('id', function(req, res, next, id) {
+  Country.findById(id)
+    .then(function(country) {
+      if (country) {
+        req.country = country;
+        next();
+      } else {
+        return res.sendStatus(404);
       }
-    });
+    })
+    .catch(next);
+});
+
+router
+  .route('/')
+  .get((req, res, next) => {
+    return Country.findAll({ include: [Aircraft] })
+      .then(countries => {
+        return countries.filter(country => {
+          return country.aircrafts.length > 0;
+        });
+      })
+      .then(countries => res.json(countries))
+      .catch(next);
+  })
+  .post((req, res, next) => {
+    if (req.body) {
+      Country.create(req.body)
+        .then(country => {
+          country.save();
+          res.json(country);
+        })
+        .catch(next);
+    }
+  });
 
 // prettier-ignore
 router
@@ -61,33 +74,7 @@ router
       .catch(next);
   })
   .delete((req, res, next) => {
-    /* deletes all aircrafts associated with the country */
-    // return Country.findAll({
-    //   include: [
-    //     {
-    //       model: Aircraft,
-    //     },
-    //   ],
-    //   where: {
-    //     id: +req.params.id,
-    //   },
-    // })
-    //   .then(country => {
-    //     return country.destroy();
-    //   })
-    //   .then(country => {
-    //     res.json(country);
-    //   });
-    return Country.destroy({
-      include: [
-        {
-          model: Aircraft,
-        },
-      ],
-      where: { id: req.params.id },
-    }).then(country => {
-      res.json(country);
-    });
+    req.country.destroy().then(() => res.status(204).end());
   });
 
 module.exports = router;
