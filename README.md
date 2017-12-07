@@ -13,7 +13,7 @@ Make a thing **again**!
 ## Requirements
 
 ### The Premise
- Design a website for aircraft fanatics 🤓 and create a RESTful API that allows you to manage these aircrafts! 
+ Design a website for aircraft fanatics 🤓 and create a RESTful API that allows you to manage these aircrafts!
 
 ### The tools
 
@@ -74,44 +74,48 @@ Use at least Sequelize, Express, React, Redux, and React-Redux when creating thi
 ### Routes
 
 ```
-GET 
-- all countries
+GET
+- all countries  /* done */
   - populated with aircrafts
-- a country by id
+
+- a country by id /* done */
   - populated with aircrafts
   - excluding the description of the aircraft
-- top 5 countries
+
+- top 5 countries /* done */
   - by GFI (0 is strongest (top), 10 is weakest (bottom))
   - sorted strongest to weakest
-- all aircrafts
+
+- all aircrafts /* done */
   - populated with the name of the country that owns each aircraft
   - excluding the descriptions
+
 - an aircraft by id
   - populated with only the name of the country that owns the aircraft
 ```
 
 ```
-POST
+POST  /* done */
 - new country
 - new aircraft
 ```
 
 ```
-PUT
+PUT /* done */
 - update country info for one country
 - update aircraft info for one aircraft
 ```
 
 ```
-DELETE
+DELETE /* done */
 - a country
   - deletes all aircrafts associated with the country
-- an aircraft
+- an aircraft /* should be good */
 ```
 
 ### How to test functionality without a frontend
 - GET: use your browser
-- POST / PUT / DELETE : 
+- POST / PUT / DELETE :
  - CLI (command line interface) with `curl`
    - e.g. `curl -H "Content-Type: application/json" -X POST -d '{"username":"kate","password":"1234"}' http://localhost:3000/api/login`
    - `-H`: headers. `-X`: verb. `-d`: data (must be of the type specified in headers). http://[address]:[port]/[route_path]
