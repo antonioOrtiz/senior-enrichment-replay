@@ -25,6 +25,7 @@ var Aircraft = db.define(
     },
     type: { /* should be good */
       type: Sequelize.STRING,
+      allowNull: false,
       validate: {
         isIn: [['Attack', 'Bomber', 'Versatile', 'Transport', 'Reconoissance', 'Rescue']],
       },
@@ -35,24 +36,6 @@ var Aircraft = db.define(
 
     imageUrl: { /* should be good */
       type: Sequelize.STRING,
-      defaultValue:
-        'http://media.gettyimages.com/photos/the-wright-brothers-give-a-demonstration-of-their-wright-model-a-picture-id530836658?k=6&m=530836658&s=612x612&w=0&h=66RNNerGkWA4C_784UK1-bXRret0CHY8QDl_HRYSY6I=',
-    validate: {
-      set() {
-        var defaultImageBasedOnType = {
-          'Attack': 'https://en.wikipedia.org/wiki/Attack_aircraft#/media/File:Boeing_GA-1_on_ground.jpg',
-          'Bomber': 'https://en.wikipedia.org/wiki/Bomber#/media/File:14082007-Illya-Muromec-1.jpg',
-          'Versatile': 'https://www.historyandheadlines.com/wp-content/uploads/2014/08/6mostversatileaircrafthh.jpg',
-          'Transport': 'http://www.gettyimages.com/detail/news-photo/lithograph-of-a-national-air-transport-plane-carrying-us-news-photo/551922767?esource=SEO_GIS_CDN_Redirect#lithograph-of-a-national-air-transport-plane-carrying-us-air-mail-picture-id551922767',
-          'Reconoissance': 'http://www.militaryhistoryonline.com/wwi/images/recon5.jpg',
-          'Rescue': 'https://i.pinimg.com/originals/26/e7/e3/26e7e3a1ad294eb6acfa4b65a6d56d42.jpg'
-        }
-        if (!this.imageUrl) {
-          return this.imageUrl = defaultImageBasedOnType[this.type];
-        }
-      },
-    },
-
     },
     description: {  /* should be good */
       type: Sequelize.TEXT,
@@ -64,6 +47,19 @@ var Aircraft = db.define(
 // prettier-ignore
 // must track the aircraft it succeeds via a reference called 'succeeded'
 /* TBD */
+Aircraft.hook('beforeCreate', function(aircraft){
+    var defaultImageBasedOnType = {
+      'Attack': 'https://en.wikipedia.org/wiki/Attack_aircraft#/media/File:Boeing_GA-1_on_ground.jpg',
+      'Bomber': 'https://en.wikipedia.org/wiki/Bomber#/media/File:14082007-Illya-Muromec-1.jpg',
+      'Versatile': 'https://www.historyandheadlines.com/wp-content/uploads/2014/08/6mostversatileaircrafthh.jpg',
+      'Transport': 'http://www.gettyimages.com/detail/news-photo/lithograph-of-a-national-air-transport-plane-carrying-us-news-photo/551922767?esource=SEO_GIS_CDN_Redirect#lithograph-of-a-national-air-transport-plane-carrying-us-air-mail-picture-id551922767',
+      'Reconoissance': 'http://www.militaryhistoryonline.com/wwi/images/recon5.jpg',
+      'Rescue': 'https://i.pinimg.com/originals/26/e7/e3/26e7e3a1ad294eb6acfa4b65a6d56d42.jpg'
+    }
+    if (aircraft.imageUrl == null) {
+      aircraft.imageUrl = defaultImageBasedOnType[aircraft.type];
+    }
+})
 
 // must be assigned to a country
 // Aircraft.hook('beforeCreate', aircraft => {   not sure
