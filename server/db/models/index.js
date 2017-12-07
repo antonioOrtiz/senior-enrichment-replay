@@ -6,7 +6,7 @@ const Aircraft = require('./aircraft');
 const Country = require('./country');
 
 // This is also probably a good place for you to set up your associations
-Aircraft.belongsTo(Country, { as: 'country' });
+Aircraft.belongsTo(Country, { as: 'country', onDelete: 'cascade' });
 // Country.belongsTo(Aircraft, { as: 'aircraft' });
 
 Country.hasMany(Aircraft, {
