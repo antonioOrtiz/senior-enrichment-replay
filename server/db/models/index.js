@@ -5,10 +5,11 @@
 const Aircraft = require('./aircraft');
 const Country = require('./country');
 
-Aircraft.belongsTo(Country);
-Country.hasMany(Aircraft);
-
 // This is also probably a good place for you to set up your associations
+Aircraft.belongsTo(Country, { as: 'country' });
+// Country.belongsTo(Aircraft, { as: 'aircraft' });
+
+Country.hasMany(Aircraft);
 
 module.exports = {
   Aircraft,
