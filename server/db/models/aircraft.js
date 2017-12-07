@@ -32,10 +32,27 @@ var Aircraft = db.define(
     cost: { /* should be good */
       type: Sequelize.DECIMAL(7, 2),
     },
+
     imageUrl: { /* should be good */
       type: Sequelize.STRING,
       defaultValue:
         'http://media.gettyimages.com/photos/the-wright-brothers-give-a-demonstration-of-their-wright-model-a-picture-id530836658?k=6&m=530836658&s=612x612&w=0&h=66RNNerGkWA4C_784UK1-bXRret0CHY8QDl_HRYSY6I=',
+    validate: {
+      set() {
+        var defaultImageBasedOnType = {
+          'Attack': 'https://en.wikipedia.org/wiki/Attack_aircraft#/media/File:Boeing_GA-1_on_ground.jpg',
+          'Bomber': 'https://en.wikipedia.org/wiki/Bomber#/media/File:14082007-Illya-Muromec-1.jpg',
+          'Versatile': 'https://www.historyandheadlines.com/wp-content/uploads/2014/08/6mostversatileaircrafthh.jpg',
+          'Transport': 'http://www.gettyimages.com/detail/news-photo/lithograph-of-a-national-air-transport-plane-carrying-us-news-photo/551922767?esource=SEO_GIS_CDN_Redirect#lithograph-of-a-national-air-transport-plane-carrying-us-air-mail-picture-id551922767',
+          'Reconoissance': 'http://www.militaryhistoryonline.com/wwi/images/recon5.jpg',
+          'Rescue': 'https://i.pinimg.com/originals/26/e7/e3/26e7e3a1ad294eb6acfa4b65a6d56d42.jpg'
+        }
+        if (!this.imageUrl) {
+          return this.imageUrl = defaultImageBasedOnType[this.type];
+        }
+      },
+    },
+
     },
     description: {  /* should be good */
       type: Sequelize.TEXT,
@@ -43,27 +60,6 @@ var Aircraft = db.define(
   },
   {}
 );
-
-// // we want to hook into the "beforeDestroy" lifecycle event
-// // this lifecycle event happens before an instance is removed from the database,
-// // so we can use this to "clean up" other rows that are also no longer needed
-Country.beforeDestroy(countryInstance => {
-  console.log('countryInstance', countryInstance);
-  // make sure to return any promises inside hooks! This way Sequelize will be sure to
-  // wait for the promise to resolve before advancing to the next lifecycle stage!
-  return Aircraft.destroy({
-    where: {
-      countryId: countryInstance.id,
-    },
-    truncate: true,
-  })
-    .then(affectedRows => {
-      return Aircraft.findAll();
-    })
-    .then(aircrafts => {
-      console.log(aircrafts);
-    });
-});
 
 // prettier-ignore
 // must track the aircraft it succeeds via a reference called 'succeeded'
