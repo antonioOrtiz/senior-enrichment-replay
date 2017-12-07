@@ -23,25 +23,25 @@ Use at least Sequelize, Express, React, Redux, and React-Redux when creating thi
 
 #### Aircrafts
   * have profile info including:
-    * make - not empty or null (e.g. Lockheed Martin - for more [makers](https://en.wikipedia.org/wiki/List_of_aircraft_manufacturers))
-    * model - not empty or null (ex. [Lockheed models](https://en.wikipedia.org/wiki/List_of_Lockheed_aircraft))
-    * year - after 1903 👵
-    * type - can be either Attack, Bomber, Versatile, Transport, Reconoissance or Rescue
-    * cost - decimal stored in millions (i.e. $1 million would be 1 in the database)
-    * imageUrl - has default value
-    * description - extremely large text
+    * make - not empty or null (e.g. Lockheed Martin - for more [makers](https://en.wikipedia.org/wiki/List_of_aircraft_manufacturers)) ** done **
+    * model - not empty or null (ex. [Lockheed models](https://en.wikipedia.org/wiki/List_of_Lockheed_aircraft)) ** done **
+    * year - after 1903 👵 * done *
+    * type - can be either Attack, Bomber, Versatile, Transport, Reconoissance or Rescue ** done **
+    * cost - decimal stored in millions (i.e. $1 million would be 1 in the database) ** done **
+    * imageUrl - has default value ** done **
+    * description - extremely large text ** done **
   * must track the aircraft it succeeds via a reference called 'succeeded'
-  * must be assigned to a country
-  * must have a method `getAircraftByType`, that gets aircrafts by inputted type
-  * must have a method to change the `cost` of 1 to $1,000,000 when retrieving records
+  * must be assigned to a country ** done **
+  * must have a method `getAircraftByType`, that gets aircrafts by inputted type ** done **
+  * must have a method to change the `cost` of 1 to $1,000,000 when retrieving records ** done **
 
 #### Countries
   * have profile info including:
-    * name - not empty or null
-    * GFI - decimal between 0 - 10 (global firepower index)
-    * flagUrl - has a default value
-  * can have many aircrafts assigned (may have none)
-  * must have a method `getTopFive` which finds the top 5 strongest nations sorted by GFI (0 is the strongest, 10 is the weakest)
+    * name - not empty or null ** done **
+    * GFI - decimal between 0 - 10 (global firepower index) ** done **
+    * flagUrl - has a default value ** done **
+  * can have many aircrafts assigned (may have none) ** done **
+  * must have a method `getTopFive` which finds the top 5 strongest nations sorted by GFI (0 is the strongest, 10 is the weakest) ** done **
 
 ### Views and Functionality
 
@@ -110,7 +110,7 @@ PUT /* done */
 DELETE /* done */
 - a country
   - deletes all aircrafts associated with the country
-- an aircraft /* should be good */
+- an aircraft
 ```
 
 ### How to test functionality without a frontend
