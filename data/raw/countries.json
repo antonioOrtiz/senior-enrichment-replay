@@ -1,0 +1,27 @@
+[
+    {
+        "name": "Spain",
+        "GFI": 5,
+        "flagUrl": "https://upload.wikimedia.org/wikipedia/en/thumb/9/9a/Flag_of_Spain.svg/1200px-Flag_of_Spain.svg.png"
+    },
+    {
+        "name": "Great Britain",
+        "GFI": 2,
+        "flagUrl": "https://en.wikipedia.org/wiki/British_Empire#/media/File:Flag_of_the_United_Kingdom.svg"
+    },
+    {
+        "name": "Nigeria",
+        "GFI": 10,
+        "flagUrl": "https://en.wikipedia.org/wiki/Nigeria#/media/File:Flag_of_Nigeria.svg"
+    },
+    {
+        "name": "Unites States",
+        "GFI": 0,
+        "flagUrl": "https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg"
+    },
+    {
+        "name": "China",
+        "GFI": 0,
+        "flagUrl": "https://en.wikipedia.org/wiki/China#/media/File:Flag_of_the_People%27s_Republic_of_China.svg"
+    }
+]

@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "name": "Spain",
+        "GFI": 5,
+        "flagUrl": "https://upload.wikimedia.org/wikipedia/en/thumb/9/9a/Flag_of_Spain.svg/1200px-Flag_of_Spain.svg.png"
+    },
+    {
+        "id": 2,
+        "name": "Great Britain",
+        "GFI": 2,
+        "flagUrl": "https://en.wikipedia.org/wiki/British_Empire#/media/File:Flag_of_the_United_Kingdom.svg"
+    },
+    {
+        "id": 3,
+        "name": "Nigeria",
+        "GFI": 10,
+        "flagUrl": "https://en.wikipedia.org/wiki/Nigeria#/media/File:Flag_of_Nigeria.svg"
+    },
+    {
+        "id": 4,
+        "name": "Unites States",
+        "GFI": 0,
+        "flagUrl": "https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg"
+    }
+]
