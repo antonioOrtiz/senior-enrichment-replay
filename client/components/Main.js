@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import store from '../store';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import Home from './Home';
 import Aircrafts from './Aircrafts';
@@ -6,46 +7,53 @@ import Countries from './Countries';
 import NotFound from './NotFound';
 
 export default class Main extends Component {
-  constructor() {
-    super();
-    this.state = {};
-    // this.nextJoke = this.nextJoke.bind(this)
-    // this.answer = this.answer.bind(this)
+  constructor(props) {
+    super(props);
+    this.state = store.getState();
   }
 
   componentDidMount() {
-    // this.nextJoke()
+    this.unsubscribeFromStore = store.subscribe(() => {
+      this.setState(store.getState());
+    });
   }
 
-  // nextJoke() {
-  //   this.setState({
-  //     joke: randomJoke(),
-  //     answered: false,
-  //   })
-  // }
-
-  // answer() {
-  //   this.setState({answered: true})
-  // }
+  componentWillUnmount() {
+    this.unsubscribeFromStore();
+  }
 
   render() {
     return (
       <Router>
         <div className="container">
           <div className="row">
-            <div className="twelve columns">
-              <header>
+            <header>
+              <div className="container">
                 <div className="row">
-                  <div className="six columns">
-                    <Link to="/aircrafts">Aircrafts</Link>
-                  </div>
-                  <div className="six columns">
-                    <Link to="/countries">Countries</Link>
+                  <div className="twelve columns">
+                    <nav>
+                      <table className="u-full-width">
+                        <thead>
+                          <tr>
+                            <th>
+                              <Link to="/">Home</Link>
+                            </th>
+                            <th>
+                              <Link to="/aircrafts">Aircrafts</Link>
+                            </th>
+                            <th>
+                              <Link to="/countries">Countries</Link>
+                            </th>
+                          </tr>
+                        </thead>
+                      </table>
+                    </nav>
                   </div>
                 </div>
-              </header>
-            </div>
+              </div>
+            </header>
           </div>
+
           <div className="row">
             <div className="twelve columns">
               <Switch>
