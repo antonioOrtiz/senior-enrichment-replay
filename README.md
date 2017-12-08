@@ -46,7 +46,7 @@ Use at least Sequelize, Express, React, Redux, and React-Redux when creating thi
 ### Views and Functionality
 
 - Navigation: as a user I...
-  * will land on **Home** by default
+  * will land on **Home** by default ** done **
   * can navigate to **Countries** from **Home**
   * can navigate to **Aircrafts** from **Home**
   * can navigate to view a top 5 **Single Country** from **Home** (see `Views` below for more details)
