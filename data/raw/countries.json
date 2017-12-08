@@ -1,5 +1,10 @@
 [
     {
+        "name": "Unites States",
+        "GFI": 0,
+        "flagUrl": "https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg"
+    },
+    {
         "name": "Spain",
         "GFI": 5,
         "flagUrl": "https://upload.wikimedia.org/wikipedia/en/thumb/9/9a/Flag_of_Spain.svg/1200px-Flag_of_Spain.svg.png"
@@ -15,13 +20,39 @@
         "flagUrl": "https://en.wikipedia.org/wiki/Nigeria#/media/File:Flag_of_Nigeria.svg"
     },
     {
-        "name": "Unites States",
-        "GFI": 0,
-        "flagUrl": "https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg"
-    },
-    {
         "name": "China",
         "GFI": 0,
         "flagUrl": "https://en.wikipedia.org/wiki/China#/media/File:Flag_of_the_People%27s_Republic_of_China.svg"
+    },
+
+    {
+        "name": "Croatia",
+        "GFI": 10,
+        "flagUrl": "https://en.wikipedia.org/wiki/Croatia#/media/File:Flag_of_Croatia.svg"
+    },
+    {
+        "name": "Italy",
+        "GFI": 8,
+        "flagUrl": "https://en.wikipedia.org/wiki/Italy#/media/File:Flag_of_Italy.svg"
+    },
+    {
+        "name": "France",
+        "GFI": 4,
+        "flagUrl": "https://en.wikipedia.org/wiki/France#/media/File:Flag_of_France.svg"
+    },
+    {
+        "name": "Scotland",
+        "GFI": 6,
+        "flagUrl": "https://en.wikipedia.org/wiki/Scotland#/media/File:Flag_of_Scotland.svg"
+    },
+    {
+        "name": "Switzerland",
+        "GFI": 9,
+        "flagUrl": "https://en.wikipedia.org/wiki/Switzerland#/media/File:Flag_of_Switzerland_(Pantone).svg"
+    },
+    {
+        "name": "Egypt",
+        "GFI": 4,
+        "flagUrl": "https://en.wikipedia.org/wiki/Egypt#/media/File:Flag_of_Egypt.svg"
     }
 ]
