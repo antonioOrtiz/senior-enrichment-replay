@@ -23,7 +23,7 @@ router
   .get((req, res, next) => {
     return Country.findAll({ include: [Aircraft] })
       .then(countries => {
-        return countries.filter(country => {
+        countries.filter(country => {
           return country.aircrafts.length > 0;
         });
       })
@@ -64,7 +64,9 @@ router
         id: req.params.id,
       },
     })
-      .then(country => res.json(country))
+      .then(country => {
+        res.json(country);
+      })
       .then(next);
   })
   .put((req, res, next) => {
