@@ -4,20 +4,42 @@ import axios from 'axios';
 
 const initialState = {
   topFiveCountries: [],
+  oneCountry: {},
+  countries: [],
 };
 
 // ACTION TYPES
 
 const GET_TOP_COUNTRIES_BY_GFI = 'GET_TOP_COUNTRIES_BY_GFI';
+const GET_COUNTRY = 'GET_COUNTRY';
+const GET_COUNTRIES = 'GET_COUNTRIES';
 
 // ACTION CREATORS
-export function getTopFiveCountriesByGFI(countries) {
+export function getTopFiveCountriesByGFI(topFiveCountries) {
   const action = {
     type: GET_TOP_COUNTRIES_BY_GFI,
+    topFiveCountries,
+  };
+  return action;
+}
+
+export function getCountry(country) {
+  const action = {
+    type: GET_COUNTRY,
+    country,
+  };
+  return action;
+}
+
+export function getCountries(countries) {
+  const action = {
+    type: GET_COUNTRIES,
     countries,
   };
   return action;
 }
+
+//THUNK CREATORS
 
 export function fetchTopFiveCountriesByGFI() {
   return function thunk(dispatch) {
@@ -31,11 +53,52 @@ export function fetchTopFiveCountriesByGFI() {
   };
 }
 
+export function fetchCountry(countryId) {
+  return function thunk(dispatch) {
+    return axios
+      .get('/api/countries/' + `${countryId}`)
+      .then(res => res.data)
+      .then(country => {
+        const action = getCountry(country);
+        dispatch(action);
+      });
+  };
+}
+export function fetchCountries() {
+  return function thunk(dispatch) {
+    return axios
+      .get('/api/countries')
+      .then(res => res.data)
+      .then(countries => {
+        const action = getCountries(countries);
+        dispatch(action);
+      });
+  };
+}
+// export const fetchCountries = () => dispatch => {
+//   return axios
+//     .get('/api/countries')
+//     .then(res => res.data)
+//     .then(countries => {
+//       dispatch(getCountries(countries));
+//       return countries;
+//     })
+//     .catch(console.error.bind(console));
+// };
+
 // REDUCER
 const rootReducer = function(state = initialState, action) {
   switch (action.type) {
+    case GET_COUNTRIES:
+      return action.countries;
+    // return { ...state, countries: action.countries };
+    // return (state.countries = state.countries.concat(action.countries));
     case GET_TOP_COUNTRIES_BY_GFI:
-      return { ...state, topFiveCountries: action.countries };
+      // return action.topFiveCountries;
+      return { ...state, topFiveCountries: action.topFiveCountries };
+    case GET_COUNTRY:
+      return { ...state, oneCountry: action.country };
+
     default:
       return state;
   }
