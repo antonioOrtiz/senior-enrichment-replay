@@ -39,9 +39,6 @@ var Aircraft = db.define(
     description: {
       type: Sequelize.TEXT,
     },
-    succeeded: {
-      type: Sequelize.STRING,
-    },
   },
   {}
 );
