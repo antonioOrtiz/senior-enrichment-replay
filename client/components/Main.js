@@ -1,28 +1,38 @@
 import React, { Component } from 'react';
-import store from '../store';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import Home from './Home';
 import Aircrafts from './Aircrafts';
 import Countries from './Countries';
+import SingleCountry from './SingleCountry';
 import NotFound from './NotFound';
 
+import { fetchTopFiveCountriesByGFI, fetchCountries } from '../reducers';
+
+import store from '../store';
+
 export default class Main extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = store.getState();
   }
 
   componentDidMount() {
-    this.unsubscribeFromStore = store.subscribe(() => {
-      this.setState(store.getState());
-    });
+    // console.log('fetchCountries typeof', typeof fetchCountries);
+    // const fetchCountriesThunk = fetchCountries();
+    store.dispatch(fetchCountries());
+    store.dispatch(fetchTopFiveCountriesByGFI());
+    this.unsubscribe = store.subscribe(() => this.setState(store.getState()));
   }
 
   componentWillUnmount() {
-    this.unsubscribeFromStore();
+    this.unsubscribe();
   }
 
   render() {
+    const countries = this.state.countries;
+    const topFiveCountries = this.state.topFiveCountries;
+    // console.log('topFiveCountries', topFiveCountries);
+
     return (
       <Router>
         <div className="container">
@@ -57,9 +67,10 @@ export default class Main extends Component {
           <div className="row">
             <div className="twelve columns">
               <Switch>
-                <Route exact path="/" render={() => <Home />} />
+                <Route exact path="/" render={() => <Home topFiveCountries={topFiveCountries} />} />
                 <Route exact path="/aircrafts" render={() => <Aircrafts />} />
-                <Route exact path="/countries" render={() => <Countries />} />
+                <Route exact path="/countries" render={() => <Countries countries={countries} />} />
+                <Route exact path="/countries/:id" component={SingleCountry} />
                 <Route path="*" component={NotFound} />
               </Switch>
             </div>
