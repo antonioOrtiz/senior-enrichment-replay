@@ -7,3 +7,7 @@ public/bundle.js.map
 
 # NPM errors
 npm-debug.log
+
+# OS ignores
+.DS_Store
+client/.DS_Store

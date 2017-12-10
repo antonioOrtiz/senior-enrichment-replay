@@ -4,7 +4,7 @@ import axios from 'axios';
 
 const initialState = {
   topFiveCountries: [],
-  oneCountry: {},
+  oneCountry: [],
   countries: [],
 };
 
@@ -23,10 +23,10 @@ export function getTopFiveCountriesByGFI(topFiveCountries) {
   return action;
 }
 
-export function getCountry(country) {
+export function getCountry(oneCountry) {
   const action = {
     type: GET_COUNTRY,
-    country,
+    oneCountry,
   };
   return action;
 }
@@ -95,8 +95,8 @@ const rootReducer = function(state = initialState, action) {
       // return action.topFiveCountries;
       return { ...state, topFiveCountries: action.topFiveCountries };
     case GET_COUNTRY:
-      return action.country;
-    // return { ...state, oneCountry: action.country };
+      // return action.oneCountry;
+      return { ...state, oneCountry: action.oneCountry };
 
     default:
       return state;

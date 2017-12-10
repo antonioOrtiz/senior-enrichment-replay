@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 
 export default function Countries(props) {
-  console.log('props', props.countries);
+  // console.log('props', props.countries);
 
   const countries = props.countries;
   const flagStyle = {

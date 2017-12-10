@@ -3,8 +3,8 @@ import { fetchCountry } from '../reducers';
 import store from '../store';
 
 export default class SingleCountry extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = store.getState();
   }
 
@@ -26,9 +26,10 @@ export default class SingleCountry extends Component {
       height: '50px',
       width: '100px',
     };
-
-    const country = this.state;
-    const singleCountry = country[0];
+    console.log('this.props: ', this.props);
+    console.log('this.state: ', this.state);
+    const oneCountry = this.state.oneCountry[0] || [];
+    console.log('oneCountry', oneCountry);
     return (
       <div className="row">
         <div className="twelve columns">
@@ -44,10 +45,10 @@ export default class SingleCountry extends Component {
             </thead>
             <tbody>
               <tr>
-                <td>{singleCountry && singleCountry.name}</td>
-                <td>{singleCountry && singleCountry.GFI}</td>
+                <td>{oneCountry.name}</td>
+                <td>{oneCountry.GFI}</td>
                 <td>
-                  <img style={flagStyle} src={singleCountry && singleCountry.flagUrl} />
+                  <img style={flagStyle} src={oneCountry.flagUrl} />
                 </td>
               </tr>
             </tbody>
@@ -57,3 +58,7 @@ export default class SingleCountry extends Component {
     );
   }
 }
+
+SingleCountry.defaultProps = {
+  singleCountry: [],
+};

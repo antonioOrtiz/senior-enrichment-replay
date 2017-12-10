@@ -11,8 +11,8 @@ import { fetchTopFiveCountriesByGFI, fetchCountries } from '../reducers';
 import store from '../store';
 
 export default class Main extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = store.getState();
   }
 
@@ -31,6 +31,8 @@ export default class Main extends Component {
   render() {
     const countries = this.state.countries;
     const topFiveCountries = this.state.topFiveCountries;
+    const { singleCountry = [] } = this.state;
+    const props = this.props;
     // console.log('topFiveCountries', topFiveCountries);
 
     return (
@@ -69,8 +71,18 @@ export default class Main extends Component {
               <Switch>
                 <Route exact path="/" render={() => <Home topFiveCountries={topFiveCountries} />} />
                 <Route exact path="/aircrafts" render={() => <Aircrafts />} />
-                <Route exact path="/countries" render={() => <Countries countries={countries} />} />
-                <Route exact path="/countries/:id" component={SingleCountry} />
+                <Route
+                  exact
+                  path="/countries"
+                  render={() => {
+                    return <Countries countries={countries} />;
+                  }}
+                />
+                <Route
+                  exact
+                  path="/countries/:id"
+                  render={props => <SingleCountry {...props} singleCountry={singleCountry} />}
+                />
                 <Route path="*" component={NotFound} />
               </Switch>
             </div>
