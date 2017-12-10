@@ -69,10 +69,8 @@ export function fetchCountries() {
     return axios
       .get('/api/countries')
       .then(res => res.data)
-      .then(countries => {
-        const action = getCountries(countries);
-        dispatch(action);
-      });
+      .then(countries => dispatch(getCountries(countries)))
+      .catch(console.error);
   };
 }
 // export const fetchCountries = () => dispatch => {
@@ -90,14 +88,15 @@ export function fetchCountries() {
 const rootReducer = function(state = initialState, action) {
   switch (action.type) {
     case GET_COUNTRIES:
-      return action.countries;
-    // return { ...state, countries: action.countries };
+      // return action.countries;
+      return { ...state, countries: action.countries };
     // return (state.countries = state.countries.concat(action.countries));
     case GET_TOP_COUNTRIES_BY_GFI:
       // return action.topFiveCountries;
       return { ...state, topFiveCountries: action.topFiveCountries };
     case GET_COUNTRY:
-      return { ...state, oneCountry: action.country };
+      return action.country;
+    // return { ...state, oneCountry: action.country };
 
     default:
       return state;
