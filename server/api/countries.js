@@ -23,7 +23,7 @@ router
   .get((req, res, next) => {
     return Country.findAll({ include: [Aircraft] })
       .then(countries => {
-        countries.filter(country => {
+        return countries.filter(country => {
           return country.aircrafts.length > 0;
         });
       })
