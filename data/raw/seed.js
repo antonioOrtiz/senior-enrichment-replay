@@ -1,0 +1,162 @@
+const usAircrafts = [
+    {
+        "name": "United States",
+        "make": "Airbus",
+        "model": "A350-800",
+        "year": "1970-11-18",
+        "type": "Transport",
+        "cost": "275.10",
+        "imageUrl": "https://en.wikipedia.org/wiki/Airbus_A350_XWB#/media/File:A7-ALA_(19397355348).jpg",
+        "description":
+            "The Airbus A350 XWB is a family of long-range, twin-engine wide-body jet airliners developed by European aircraft manufacturer Airbus. The A350 is the first Airbus aircraft with both fuselage and wing structures made primarily of carbon-fibre-reinforced polymer.[8] Its variants seat 280 to 366 passengers in typical three-class seating layouts.[9] The A350 is positioned to succeed the A340, and compete with the Boeing 787 and 777."
+    },
+    {
+        "name": "United States",
+        "make": "McDonnell Douglas",
+        "model": "F-16 Fighting Falcon",
+        "year": "1972-07-27",
+        "type": "Attack",
+        "cost": "27.90",
+        "imageUrl":
+            "https://en.wikipedia.org/wiki/McDonnell_Douglas_F-15_Eagle#/media/File:F-15,_71st_Fighter_Squadron,_in_flight.JPG",
+        "description":
+            "The McDonnell Douglas F-15 Eagle is an American twin-engine, all-weather tactical fighter aircraft designed by McDonnell Douglas (now Boeing) to gain and maintain air supremacy in aerial combat. Following reviews of proposals, the United States Air Force selected McDonnell Douglas' design in 1967 to meet the service's need for a dedicated air superiority fighter. The Eagle first flew in July 1972, and entered service in 1976. It is among the most successful modern fighters, with over 100 victories and no losses in aerial combat, with the majority of the kills by the Israeli Air Force."
+    },
+    {
+        "name": "United States",
+        "make": "Boeing",
+        "model": "Boeing 737",
+        "year": "1967-04-09",
+        "type": "Transport",
+        "cost": "32.00",
+        "imageUrl":
+            "https://en.wikipedia.org/wiki/Boeing_737#/media/File:South_African_Airlink_Boeing_737-200_Advanced_Smith.jpg",
+        "description":
+            "The Boeing 737 is a short- to medium-range twinjet narrow-body airliner developed and manufactured by Boeing Commercial Airplanes in the United States. Originally developed as a shorter, lower-cost twin-engine airliner derived from the 707 and 727, the 737 has developed into a family of ten passenger models with capacities from 85 to 215 passengers. The 737 is Boeing's only narrow-body airliner in production, with the 737 Next Generation (-700, -800, and -900ER) and the re-engined and redesigned 737 MAX variants currently being built."
+    }
+]
+
+const chineseAircrafts = [
+    {
+        "name": "China",
+        "make": "Sukhoi",
+        "model": "Sukhoi Su-30MKK",
+        "year": "2000-12-01",
+        "type": "Attack",
+        "cost": "53.00",
+        "imageUrl":
+            "https://en.wikipedia.org/wiki/Sukhoi_Su-30MKK#/media/File:PLAAF_Sukhoi_Su-30MKK_at_Lipetsk_Air_Base.jpg",
+        "description":
+            "The Sukhoi Su-30MKK (NATO reporting name: Flanker-G)[1] is a modification of the Sukhoi Su-30, incorporating advanced technology from the Sukhoi Su-35 variant. The Su-30MKK was developed by Sukhoi in 1997, as a result of a direct Request for tender between the Russian Federation and China.[2] It is a heavy class, all-weather, long-range strike fighter, and like the Sukhoi Su-30, comparable to the American McDonnell Douglas F-15E Strike Eagle. Su-30MK2 is a further improvement to Su-30MKK with upgraded avionics and maritime strike capabilities"
+    }
+]
+
+const russianAircrafts = [
+    {
+        "name": "Russia",
+        "make": "Mikoyan",
+        "model": "MiG-29S",
+        "year": "1982-07-01",
+        "type": "Attack",
+        "cost": "22",
+        "imageUrl":
+            "https://en.wikipedia.org/wiki/Mikoyan_MiG-29#/media/File:Russian_Air_Force_Mikoyan-Gurevich_MiG-29S_Naumenko-1.jpg",
+        "description":
+            "The Mikoyan MiG-29 (Russian: Микоян МиГ-29; NATO reporting name: Fulcrum) is a twin-engine jet fighter aircraft designed in the Soviet Union. Developed by the Mikoyan design bureau as an air superiority fighter during the 1    970s, the MiG-29, along with the larger Sukhoi Su-27, was developed to counter new American fighters such as the McDonnell Douglas F-15 Eagle, and the General Dynamics F-16 Fighting Falcon.[5] The MiG-29 entered service with the Soviet Air Force in 1982."
+    }
+]
+
+const italianAircrafts = [
+    {
+         "name": "Italy",
+        "make": "Alenia Aeronautica",
+        "model": "C-27J Spartan",
+        "year": "1999-09-01",
+        "type": "Transport",
+        "cost": "35",
+        "description":
+            "The Alenia C-27J Spartan is a military transport aircraft developed and manufactured by Leonardo's Aircraft Division (formerly Alenia Aermacchi until 2016).[2] It is an advanced derivative of Alenia Aeronautica's earlier G.222 (C-27A Spartan in U.S. service), equipped with the engines and various other systems also used on the larger Lockheed Martin C-130J Super Hercules. In addition to the standard transport configuration, specialized variants of the C-27J have been developed for maritime patrol, search and rescue, C3 ISR (command, control, communications, intelligence, surveillance and reconnaissance), fire support and electronic warfare and ground-attack missions."
+
+    }
+]
+
+
+const countries = [
+    {
+        "name": "Unites States",
+        "GFI": 0,
+        "flagUrl": "https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg",
+        "aircrafts" : usAircrafts
+    },
+    {
+        "name": "Spain",
+        "GFI": 5,
+        "flagUrl": "https://upload.wikimedia.org/wikipedia/en/thumb/9/9a/Flag_of_Spain.svg/1200px-Flag_of_Spain.svg.png"
+        "aircrafts" : null
+
+    },
+    {
+        "name": "Great Britain",
+        "GFI": 2,
+        "flagUrl": "https://en.wikipedia.org/wiki/British_Empire#/media/File:Flag_of_the_United_Kingdom.svg"
+        "aircrafts" : null
+
+    },
+    {
+        "name": "Nigeria",
+        "GFI": 10,
+        "flagUrl": "https://en.wikipedia.org/wiki/Nigeria#/media/File:Flag_of_Nigeria.svg",
+        "aircrafts" : null
+
+    },
+    {
+        "name": "China",
+        "GFI": 0,
+        "flagUrl": "https://en.wikipedia.org/wiki/China#/media/File:Flag_of_the_People%27s_Republic_of_China.svg",
+        "aircrafts" : chineseAircrafts
+
+    },
+
+    {
+        "name": "Croatia",
+        "GFI": 10,
+        "flagUrl": "https://en.wikipedia.org/wiki/Croatia#/media/File:Flag_of_Croatia.svg",
+        "aircrafts" : null
+
+    },
+    {
+        "name": "Italy",
+        "GFI": 8,
+        "flagUrl": "https://en.wikipedia.org/wiki/Italy#/media/File:Flag_of_Italy.svg",
+        "aircrafts" : italianAircrafts
+
+    },
+    {
+        "name": "France",
+        "GFI": 4,
+        "flagUrl": "https://en.wikipedia.org/wiki/France#/media/File:Flag_of_France.svg",
+        "aircrafts" : null
+
+    },
+    {
+        "name": "Scotland",
+        "GFI": 6,
+        "flagUrl": "https://en.wikipedia.org/wiki/Scotland#/media/File:Flag_of_Scotland.svg",
+        "aircrafts" : null
+
+    },
+    {
+        "name": "Switzerland",
+        "GFI": 9,
+        "flagUrl": "https://en.wikipedia.org/wiki/Switzerland#/media/File:Flag_of_Switzerland_(Pantone).svg",
+        "aircrafts" : null
+
+    },
+    {
+        "name": "Egypt",
+        "GFI": 4,
+        "flagUrl": "https://en.wikipedia.org/wiki/Egypt#/media/File:Flag_of_Egypt.svg",
+        "aircrafts" : null
+
+    }
+]
