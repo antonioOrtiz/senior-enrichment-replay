@@ -57,7 +57,7 @@ Use at least Sequelize, Express, React, Redux, and React-Redux when creating thi
 
 - Views: as a user I...
   * see a navbar in every view ** done **
-  * see a scoreboard of the top 5 countries, in order, measured by GFI (Global Firepower Index - 0 is strongest(top), 10 is the weakest(bottom)) on the **Home** view
+  * see a scoreboard of the top 5 countries, in order, measured by GFI (Global Firepower Index - 0 is strongest(top), 10 is the weakest(bottom)) on the **Home** view ** done **
   * see a list of all countries on the **Countries** view
   * see a list of all aircrafts on the **Aircrafts** view
   * see details about a country on the **Single Country** view, including that country's aircrafts
