@@ -6,34 +6,37 @@ import Countries from './Countries';
 import SingleCountry from './SingleCountry';
 import NotFound from './NotFound';
 
-import { fetchTopFiveCountriesByGFI, fetchCountries } from '../reducers';
+import { fetchTopFiveCountriesByGFI } from '../reducers/topFiveCountriesByGFI';
+import { fetchCountries } from '../reducers/countries';
 
 import store from '../store';
+import { connect } from 'react-redux';
 
-export default class Main extends Component {
-  constructor(props) {
-    super(props);
-    this.state = store.getState();
-  }
+class Main extends Component {
+  // constructor(props) {
+  //   super(props);
+  //   this.state = store.getState();
+  // }
+
+  // componentDidMount() {
+  //   // console.log('fetchCountries typeof', typeof fetchCountries);
+  //   // const fetchCountriesThunk = fetchCountries();
+  //   store.dispatch(fetchCountries());
+  //   store.dispatch(fetchTopFiveCountriesByGFI());
+  //   this.unsubscribe = store.subscribe(() => this.setState(store.getState()));
+  // }
 
   componentDidMount() {
-    // console.log('fetchCountries typeof', typeof fetchCountries);
-    // const fetchCountriesThunk = fetchCountries();
-    store.dispatch(fetchCountries());
-    store.dispatch(fetchTopFiveCountriesByGFI());
-    this.unsubscribe = store.subscribe(() => this.setState(store.getState()));
+    this.props.fetchTopFiveCountriesByGFI();
+    this.props.fetchCountries();
   }
 
-  componentWillUnmount() {
-    this.unsubscribe();
-  }
+  // componentWillUnmount() {
+  //   this.unsubscribe();
+  // }
 
   render() {
-    const countries = this.state.countries;
-    const topFiveCountries = this.state.topFiveCountries;
-    const { singleCountry = [] } = this.state;
-    const props = this.props;
-    // console.log('topFiveCountries', topFiveCountries);
+    // const countries = this.state.countries;
 
     return (
       <Router>
@@ -69,20 +72,16 @@ export default class Main extends Component {
           <div className="row">
             <div className="twelve columns">
               <Switch>
-                <Route exact path="/" render={() => <Home topFiveCountries={topFiveCountries} />} />
+                <Route exact path="/" render={() => <Home topFiveCountries={this.props.topFiveCountries} />} />
                 <Route exact path="/aircrafts" render={() => <Aircrafts />} />
                 <Route
                   exact
                   path="/countries"
                   render={() => {
-                    return <Countries countries={countries} />;
+                    return <Countries countries={this.props.countries} />;
                   }}
                 />
-                <Route
-                  exact
-                  path="/countries/:id"
-                  render={props => <SingleCountry {...props} singleCountry={singleCountry} />}
-                />
+                <Route exact path="/countries/:id" render={() => <SingleCountry />} />
                 <Route path="*" component={NotFound} />
               </Switch>
             </div>
@@ -92,3 +91,19 @@ export default class Main extends Component {
     );
   }
 }
+
+const mapDispatch = dispatch => ({
+  fetchCountries: () => {
+    dispatch(fetchCountries());
+  },
+  fetchTopFiveCountriesByGFI: () => {
+    dispatch(fetchTopFiveCountriesByGFI());
+  },
+});
+
+const mapState = state => ({
+  topFiveCountries: state.topFiveCountries,
+  countries: state.countries,
+});
+
+export default connect(mapState, mapDispatch)(Main);
