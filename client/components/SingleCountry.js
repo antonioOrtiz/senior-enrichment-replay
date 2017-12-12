@@ -1,35 +1,31 @@
 import React, { Component } from 'react';
-import { fetchCountry } from '../reducers';
+import { fetchCountry } from '../reducers/oneCountry';
+import { connect } from 'react-redux';
 import store from '../store';
 
-export default class SingleCountry extends Component {
+class SingleCountry extends Component {
   constructor(props) {
     super(props);
-    this.state = store.getState();
+
+    this.state = {
+      loading: true,
+    };
   }
 
   componentDidMount() {
-    this.unsubscribe = store.subscribe(() => this.setState(store.getState()));
-
     const countryId = this.props.match.params.id;
-    const fetchCountryThunk = fetchCountry(countryId);
-
-    store.dispatch(fetchCountryThunk);
-  }
-
-  componentWillUnmount() {
-    this.unsubscribe();
+    this.props.getCountry(countryId);
   }
 
   render() {
+    const oneCountry = this.props.oneCountry;
     const flagStyle = {
       height: '50px',
       width: '100px',
     };
-    console.log('this.props: ', this.props);
-    console.log('this.state: ', this.state);
-    const oneCountry = this.state.oneCountry[0] || [];
+
     console.log('oneCountry', oneCountry);
+    const loading = this.state.loading;
     return (
       <div className="row">
         <div className="twelve columns">
@@ -53,12 +49,35 @@ export default class SingleCountry extends Component {
               </tr>
             </tbody>
           </table>
+
+          {/* <div className="row">
+            <div className="twelve columns">
+              <div className="airplane-container">
+                <div className="wings" />
+                <div className="circle" />
+                <div className="arc" />
+                <div className="arc2" />
+              </div>
+            </div>
+          </div>*/}
         </div>
       </div>
     );
   }
 }
 
-SingleCountry.defaultProps = {
-  singleCountry: [],
+const mapState = (state, ownProps) => {
+  return {
+    oneCountry: state.oneCountry,
+  };
 };
+
+const mapDispatch = dispatch => {
+  return {
+    getCountry: function(countryId) {
+      dispatch(fetchCountry(countryId));
+    },
+  };
+};
+
+export default connect(mapState, mapDispatch)(SingleCountry);
