@@ -50,7 +50,7 @@ Use at least Sequelize, Express, React, Redux, and React-Redux when creating thi
   * can navigate to **Countries** from **Home** ** done **
   * can navigate to **Aircrafts** from **Home** ** done **
   * can navigate to view a top 5 **Single Country** from **Home** (see `Views` below for more details) ** done **
-  * can navigate to view a **Single Country** from **Countries**
+  * can navigate to view a **Single Country** from **Countries** ** done **
   * can navigate to view a **Single Aircraft** from **Aircrafts**
   * can navigate to view a **Single Aircraft** from **Single Country** (for any aircraft that the country owns)
   * can navigate to view an aircrafts' **Single Country** from **Single Aircraft**
