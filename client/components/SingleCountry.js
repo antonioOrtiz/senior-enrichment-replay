@@ -18,14 +18,13 @@ class SingleCountry extends Component {
   }
 
   render() {
-    const oneCountry = this.props.oneCountry;
+    const oneCountry = this.props.oneCountry[0] || [];
     const flagStyle = {
       height: '50px',
       width: '100px',
     };
 
-    console.log('oneCountry', oneCountry);
-    const loading = this.state.loading;
+    // const loading = this.state.loading;
     return (
       <div className="row">
         <div className="twelve columns">
