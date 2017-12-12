@@ -6,10 +6,6 @@ import store from '../store';
 class SingleCountry extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      loading: true,
-    };
   }
 
   componentDidMount() {
@@ -24,7 +20,6 @@ class SingleCountry extends Component {
       width: '100px',
     };
 
-    // const loading = this.state.loading;
     return (
       <div className="row">
         <div className="twelve columns">

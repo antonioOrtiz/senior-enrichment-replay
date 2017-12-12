@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 
 export default function TopFiveCountriesByGFI(props) {
-  console.log('this.props!', props.topFiveCountries);
   const topFiveCountries = props.topFiveCountries;
 
   const flagStyle = {
@@ -47,16 +46,3 @@ export default function TopFiveCountriesByGFI(props) {
     </div>
   );
 }
-
-// const mapDispatch = dispatch => ({
-
-//   fetchTopFiveCountriesByGFI: () => {
-//     dispatch(fetchTopFiveCountriesByGFI());
-//   },
-// });
-
-// const mapState = state => ({
-//   topFiveCountries: state.topFiveCountries,
-// });
-
-// export default connect(mapState, mapDispatch)(TopFiveCountriesByGFI);

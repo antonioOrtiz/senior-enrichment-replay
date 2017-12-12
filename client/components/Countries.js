@@ -1,14 +1,17 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
+import SearchFieldForm from './SearchFieldForm';
 
 export default function Countries(props) {
-  // console.log('props', props.countries);
-
   const countries = props.countries;
   const flagStyle = {
     height: '50px',
     width: '100px',
   };
+
+  function submit(values) {
+    console.log(values);
+  }
   return (
     <div className="row">
       <div className="twelve columns">
@@ -17,7 +20,7 @@ export default function Countries(props) {
           <thead>
             <tr>
               <th>Name</th>
-              <th>GFI</th>
+              <th>*GFI</th>
               <th>Flag </th>
             </tr>
           </thead>
@@ -39,29 +42,9 @@ export default function Countries(props) {
               </tbody>
             );
           })}
-
-          {/*  {countries ? (
-            countries.map(country => {
-              return (
-                <tbody key={country.id}>
-                  <tr>
-                    <td>
-                      <Link className="country-page-link" to={`/countries/${country.id}`}>
-                        {country.name}
-                      </Link>
-                    </td>
-                    <td>{country.GFI}</td>
-                    <td>
-                      <img style={flagStyle} src={country.flagUrl} />
-                    </td>
-                  </tr>
-                </tbody>
-              );
-            })
-          ) : (
-            <div>Sorry no content yet!</div>
-          )}*/}
         </table>
+        <SearchFieldForm onSubmit={submit} />
+        <small>*Global Firepower Index - 0 is strongest (top), 10 is the weakest (bottom)</small>
       </div>
     </div>
   );

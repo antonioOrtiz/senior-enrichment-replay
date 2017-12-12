@@ -33,8 +33,6 @@ const reducer = function(state = [], action) {
   switch (action.type) {
     case GET_COUNTRY:
       return action.oneCountry;
-    // return { ...state, oneCountry: action.oneCountry };
-    // return [action.oneCountry, ...state];
     default:
       return state;
   }

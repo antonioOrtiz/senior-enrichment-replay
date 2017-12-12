@@ -4,40 +4,25 @@ import Home from './Home';
 import Aircrafts from './Aircrafts';
 import Countries from './Countries';
 import SingleCountry from './SingleCountry';
+import SingleAircraft from './SingleAircraft';
+
 import NotFound from './NotFound';
 
 import { fetchTopFiveCountriesByGFI } from '../reducers/topFiveCountriesByGFI';
 import { fetchCountries } from '../reducers/countries';
+import { fetchAircrafts } from '../reducers/aircrafts';
 
 import store from '../store';
 import { connect } from 'react-redux';
 
 class Main extends Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = store.getState();
-  // }
-
-  // componentDidMount() {
-  //   // console.log('fetchCountries typeof', typeof fetchCountries);
-  //   // const fetchCountriesThunk = fetchCountries();
-  //   store.dispatch(fetchCountries());
-  //   store.dispatch(fetchTopFiveCountriesByGFI());
-  //   this.unsubscribe = store.subscribe(() => this.setState(store.getState()));
-  // }
-
   componentDidMount() {
     this.props.fetchTopFiveCountriesByGFI();
     this.props.fetchCountries();
+    this.props.fetchAircrafts();
   }
 
-  // componentWillUnmount() {
-  //   this.unsubscribe();
-  // }
-
   render() {
-    // const countries = this.state.countries;
-
     return (
       <Router>
         <div className="container">
@@ -73,7 +58,7 @@ class Main extends Component {
             <div className="twelve columns">
               <Switch>
                 <Route exact path="/" render={() => <Home topFiveCountries={this.props.topFiveCountries} />} />
-                <Route exact path="/aircrafts" render={() => <Aircrafts />} />
+                <Route exact path="/aircrafts" render={() => <Aircrafts aircrafts={this.props.aircrafts} />} />
                 <Route
                   exact
                   path="/countries"
@@ -81,7 +66,8 @@ class Main extends Component {
                     return <Countries countries={this.props.countries} />;
                   }}
                 />
-                <Route exact path="/countries/:id" render={() => <SingleCountry />} />
+                <Route exact path="/countries/:id" component={SingleCountry} />
+                <Route exact path="/aircrafts/:id" component={SingleAircraft} />
                 <Route path="*" component={NotFound} />
               </Switch>
             </div>
@@ -99,11 +85,15 @@ const mapDispatch = dispatch => ({
   fetchTopFiveCountriesByGFI: () => {
     dispatch(fetchTopFiveCountriesByGFI());
   },
+  fetchAircrafts: () => {
+    dispatch(fetchAircrafts());
+  },
 });
 
 const mapState = state => ({
   topFiveCountries: state.topFiveCountries,
   countries: state.countries,
+  aircrafts: state.aircrafts,
 });
 
 export default connect(mapState, mapDispatch)(Main);
