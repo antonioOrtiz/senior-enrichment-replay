@@ -49,7 +49,7 @@ Use at least Sequelize, Express, React, Redux, and React-Redux when creating thi
   * will land on **Home** by default ** done **
   * can navigate to **Countries** from **Home** ** done **
   * can navigate to **Aircrafts** from **Home** ** done **
-  * can navigate to view a top 5 **Single Country** from **Home** (see `Views` below for more details)
+  * can navigate to view a top 5 **Single Country** from **Home** (see `Views` below for more details) ** done **
   * can navigate to view a **Single Country** from **Countries**
   * can navigate to view a **Single Aircraft** from **Aircrafts**
   * can navigate to view a **Single Aircraft** from **Single Country** (for any aircraft that the country owns)
@@ -58,7 +58,7 @@ Use at least Sequelize, Express, React, Redux, and React-Redux when creating thi
 - Views: as a user I...
   * see a navbar in every view ** done **
   * see a scoreboard of the top 5 countries, in order, measured by GFI (Global Firepower Index - 0 is strongest(top), 10 is the weakest(bottom)) on the **Home** view ** done **
-  * see a list of all countries on the **Countries** view
+  * see a list of all countries on the **Countries** view ** done **
   * see a list of all aircrafts on the **Aircrafts** view
   * see details about a country on the **Single Country** view, including that country's aircrafts
   * see details about an aircraft on the **Single Aircraft** view, including that aircrafts' country
